@@ -1,0 +1,460 @@
+{
+  "timestamp": "2025-11-14T10:04:10.600Z",
+  "apiBase": "http://localhost:5000",
+  "summary": {
+    "total": 13,
+    "passed": 12,
+    "failed": 1,
+    "successRate": 0
+  },
+  "tests": [
+    {
+      "name": "Server Health Check",
+      "endpoint": "/api/health",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.584Z",
+      "response": {
+        "success": true,
+        "data": {
+          "status": "healthy",
+          "timestamp": "2025-11-14T10:04:10.582Z"
+        }
+      }
+    },
+    {
+      "name": "User Login - Valid Credentials",
+      "endpoint": "/api/auth/login",
+      "method": "POST",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.586Z",
+      "response": {
+        "success": true,
+        "data": {
+          "token": "mock-jwt-token-1763114650586",
+          "user": {
+            "id": "6501234567890abcdef123456",
+            "name": "Raj Kumar Sharma",
+            "email": "raj.sharma@example.com",
+            "role": "admin"
+          }
+        }
+      }
+    },
+    {
+      "name": "User Login - Invalid Credentials",
+      "endpoint": "/api/auth/login",
+      "method": "POST",
+      "statusCode": 401,
+      "success": false,
+      "timestamp": "2025-11-14T10:04:10.588Z",
+      "error": {
+        "success": false,
+        "error": "Invalid credentials"
+      },
+      "response": {
+        "success": false,
+        "error": "Invalid credentials"
+      }
+    },
+    {
+      "name": "User Profile",
+      "endpoint": "/api/users/profile",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.589Z",
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "6501234567890abcdef123456",
+          "name": "Raj Kumar Sharma",
+          "email": "raj.sharma@example.com",
+          "password": "$2a$10$HashedPassword123",
+          "phone": "+919876543210",
+          "role": "admin",
+          "organization": {
+            "name": "Sharma Enterprises Pvt Ltd",
+            "gstin": "27ABCDE1234F1Z5",
+            "address": "123 Business Plaza, Mumbai, Maharashtra - 400001"
+          },
+          "preferences": {
+            "currency": "INR",
+            "language": "en",
+            "notifications": true
+          },
+          "createdAt": "2024-01-15T00:00:00.000Z",
+          "lastLogin": "2025-11-14T00:00:00.000Z"
+        }
+      }
+    },
+    {
+      "name": "Dashboard Statistics",
+      "endpoint": "/api/dashboard/stats",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.590Z",
+      "response": {
+        "success": true,
+        "data": {
+          "totalClients": 3,
+          "totalInvoices": 2,
+          "totalRevenue": 136290,
+          "outstandingAmount": 47790,
+          "monthlyStats": {
+            "2025-11": {
+              "invoices": 2,
+              "revenue": 136290,
+              "ewayBills": 1
+            },
+            "2025-10": {
+              "invoices": 3,
+              "revenue": 245000,
+              "ewayBills": 2
+            },
+            "2025-09": {
+              "invoices": 2,
+              "revenue": 180000,
+              "ewayBills": 1
+            }
+          },
+          "gstCompliance": {
+            "returnsFiled": 2,
+            "pendingReturns": 0,
+            "nextDueDate": "2025-12-15T00:00:00.000Z"
+          }
+        }
+      }
+    },
+    {
+      "name": "Get All Clients",
+      "endpoint": "/api/clients",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.591Z",
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6503456789012abcdef123456",
+            "name": "ABC Corporation",
+            "email": "contact@abccorp.com",
+            "phone": "+919876543220",
+            "gstin": "27XYZAB1234C1Z5",
+            "address": "456 Industrial Area, Mumbai, Maharashtra",
+            "contactPerson": "Rajesh Kumar",
+            "industry": "Manufacturing",
+            "status": "active",
+            "createdBy": "6501234567890abcdef123456",
+            "createdAt": "2024-01-20T00:00:00.000Z",
+            "lastInvoiceDate": "2025-11-01T00:00:00.000Z",
+            "totalInvoiced": 88500,
+            "payments": 88500,
+            "outstanding": 0
+          },
+          {
+            "_id": "6503456789012abcdef123457",
+            "name": "XYZ Industries Ltd",
+            "email": "info@xyzind.com",
+            "phone": "+919876543221",
+            "gstin": "29QRSTU3456V7W5",
+            "address": "789 Business Park, Pune, Maharashtra",
+            "contactPerson": "Sneha Sharma",
+            "industry": "Technology",
+            "status": "active",
+            "createdBy": "6501234567890abcdef123457",
+            "createdAt": "2024-02-15T00:00:00.000Z",
+            "lastInvoiceDate": "2025-11-10T00:00:00.000Z",
+            "totalInvoiced": 47790,
+            "payments": 0,
+            "outstanding": 47790
+          },
+          {
+            "_id": "6503456789012abcdef123458",
+            "name": "Global Solutions Inc",
+            "email": "billing@globalsolutions.com",
+            "phone": "+919876543222",
+            "gstin": "07ABCDE7890F1G5",
+            "address": "321 Corporate Tower, Bangalore, Karnataka",
+            "contactPerson": "Vikram Reddy",
+            "industry": "Consulting",
+            "status": "active",
+            "createdBy": "6501234567890abcdef123458",
+            "createdAt": "2024-03-10T00:00:00.000Z",
+            "lastInvoiceDate": "2025-10-25T00:00:00.000Z",
+            "totalInvoiced": 120000,
+            "payments": 120000,
+            "outstanding": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "Create New Client",
+      "endpoint": "/api/clients",
+      "method": "POST",
+      "statusCode": 201,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.593Z",
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "1763114650592",
+          "name": "Test Client Ltd",
+          "email": "test@client.com",
+          "phone": "+919876543000",
+          "gstin": "27TESTCL1234D1Z5",
+          "address": "Test Address, Mumbai",
+          "createdAt": "2025-11-14T10:04:10.592Z",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "name": "Get All Invoices",
+      "endpoint": "/api/invoices",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.594Z",
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6502345678901abcdef123456",
+            "invoiceNumber": "INV-2025-001",
+            "client": {
+              "name": "ABC Corporation",
+              "gstin": "27XYZAB1234C1Z5",
+              "address": "456 Industrial Area, Mumbai, Maharashtra",
+              "phone": "+919876543220"
+            },
+            "items": [
+              {
+                "description": "Consulting Services",
+                "quantity": 10,
+                "rate": 5000,
+                "taxRate": 18,
+                "amount": 50000
+              },
+              {
+                "description": "Software License",
+                "quantity": 1,
+                "rate": 25000,
+                "taxRate": 18,
+                "amount": 25000
+              }
+            ],
+            "subtotal": 75000,
+            "taxAmount": 13500,
+            "total": 88500,
+            "dueDate": "2025-12-15T00:00:00.000Z",
+            "status": "paid",
+            "createdBy": "6501234567890abcdef123456",
+            "createdAt": "2025-11-01T00:00:00.000Z",
+            "paidAt": "2025-11-05T00:00:00.000Z"
+          },
+          {
+            "_id": "6502345678901abcdef123457",
+            "invoiceNumber": "INV-2025-002",
+            "client": {
+              "name": "XYZ Industries Ltd",
+              "gstin": "29QRSTU3456V7W5",
+              "address": "789 Business Park, Pune, Maharashtra",
+              "phone": "+919876543221"
+            },
+            "items": [
+              {
+                "description": "GST Compliance Services",
+                "quantity": 12,
+                "rate": 3000,
+                "taxRate": 18,
+                "amount": 36000
+              },
+              {
+                "description": "Return Filing",
+                "quantity": 3,
+                "rate": 1500,
+                "taxRate": 18,
+                "amount": 4500
+              }
+            ],
+            "subtotal": 40500,
+            "taxAmount": 7290,
+            "total": 47790,
+            "dueDate": "2025-12-20T00:00:00.000Z",
+            "status": "pending",
+            "createdBy": "6501234567890abcdef123457",
+            "createdAt": "2025-11-10T00:00:00.000Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Create New Invoice",
+      "endpoint": "/api/invoices",
+      "method": "POST",
+      "statusCode": 201,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.595Z",
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "1763114650595",
+          "invoiceNumber": "INV-2025-003",
+          "client": {
+            "name": "Test Client",
+            "gstin": "27TESTCL1234D1Z5"
+          },
+          "items": [
+            {
+              "description": "Test Service",
+              "quantity": 1,
+              "rate": 1000,
+              "taxRate": 18,
+              "amount": 1000
+            }
+          ],
+          "subtotal": 1000,
+          "taxAmount": 180,
+          "total": 1180,
+          "createdAt": "2025-11-14T10:04:10.595Z",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "name": "Get GSTR Returns",
+      "endpoint": "/api/gst/returns",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.596Z",
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6504567890123abcdef123456",
+            "returnType": "GSTR-1",
+            "period": "2025-10",
+            "filedDate": "2025-11-05T00:00:00.000Z",
+            "status": "filed",
+            "outwardSupplies": [
+              {
+                "gstin": "27XYZAB1234C1Z5",
+                "invoiceValue": 88500,
+                "taxAmount": 13500,
+                "placeOfSupply": "27"
+              }
+            ],
+            "totalInvoiceValue": 88500,
+            "totalTaxAmount": 13500,
+            "createdBy": "6501234567890abcdef123456",
+            "createdAt": "2025-11-01T00:00:00.000Z",
+            "fileReferenceNumber": "FRN20251105123456"
+          },
+          {
+            "_id": "6504567890123abcdef123457",
+            "returnType": "GSTR-3B",
+            "period": "2025-10",
+            "filedDate": "2025-11-10T00:00:00.000Z",
+            "status": "filed",
+            "outwardSupplies": 13500,
+            "inputTaxCredit": 8000,
+            "netTaxLiability": 5500,
+            "createdBy": "6501234567890abcdef123456",
+            "createdAt": "2025-11-08T00:00:00.000Z",
+            "fileReferenceNumber": "FRN20251110123457"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Create GSTR Return",
+      "endpoint": "/api/gst/returns",
+      "method": "POST",
+      "statusCode": 201,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.597Z",
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "1763114650597",
+          "returnType": "GSTR-1",
+          "status": "draft",
+          "period": "2025-11",
+          "createdAt": "2025-11-14T10:04:10.597Z"
+        }
+      }
+    },
+    {
+      "name": "Get E-way Bills",
+      "endpoint": "/api/ewaybills",
+      "method": "GET",
+      "statusCode": 200,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.598Z",
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "_id": "6505678901234abcdef123456",
+            "ewayBillNumber": "123456789012",
+            "ewayBillDate": "2025-11-14T00:00:00.000Z",
+            "validUpto": "2025-11-21T00:00:00.000Z",
+            "supplier": {
+              "gstin": "27ABCDE1234F1Z5",
+              "name": "Sharma Enterprises Pvt Ltd",
+              "address": "123 Business Plaza, Mumbai, Maharashtra"
+            },
+            "recipient": {
+              "gstin": "29QRSTU3456V7W5",
+              "name": "XYZ Industries Ltd",
+              "address": "789 Business Park, Pune, Maharashtra"
+            },
+            "vehicleNumber": "MH 01 AB 1234",
+            "totalValue": 47790,
+            "taxAmount": 7290,
+            "status": "active",
+            "distance": 150,
+            "mode": "road",
+            "createdBy": "6501234567890abcdef123456",
+            "createdAt": "2025-11-14T00:00:00.000Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Create E-way Bill",
+      "endpoint": "/api/ewaybills",
+      "method": "POST",
+      "statusCode": 201,
+      "success": true,
+      "timestamp": "2025-11-14T10:04:10.599Z",
+      "response": {
+        "success": true,
+        "data": {
+          "_id": "1763114650599",
+          "ewayBillNumber": "873047406823",
+          "status": "active",
+          "supplier": {
+            "gstin": "27TESTCL1234D1Z5",
+            "name": "Test Supplier"
+          },
+          "recipient": {
+            "gstin": "27TESTRC1234E1Z5",
+            "name": "Test Recipient"
+          },
+          "vehicleNumber": "MH 01 TEST 1234",
+          "totalValue": 1000,
+          "distance": 50,
+          "createdAt": "2025-11-14T10:04:10.599Z"
+        }
+      }
+    }
+  ]
+}
